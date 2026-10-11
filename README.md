@@ -32,7 +32,7 @@ npm run dev            # http://localhost:3000
 
 | Variable | Where to get it |
 |---|---|
-| `DATABASE_URL` | Neon → Connect → **pooled** URL (`-pooler` host) + `&pgbouncer=true`. Percent-encode `# @ / ? % :` if they appear in the password |
+| `DATABASE_URL` | Neon → Connect → **pooled** URL (`-pooler` host) + `&pgbouncer=true`. |
 | `DIRECT_URL` | Neon → Connect → **direct** URL (no `-pooler`). `pgbouncer=true` goes on `DATABASE_URL` only |
 | `AUTH_SECRET` | `openssl rand -base64 32` (32+ chars, server refuses to boot without it) |
 | `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD` | You choose; admin login + required at boot |

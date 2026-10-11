@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { motion, type Transition } from "framer-motion";
 import PrismaticBurst from "./prismatic-burst";
 import { useTheme } from "./theme-provider";
 
@@ -18,7 +19,6 @@ export function AmbientBackground() {
     setReduced(mq.matches);
     const onChange = (e: MediaQueryListEvent): void => setReduced(e.matches);
     mq.addEventListener("change", onChange);
-    // Phones: coarse pointer or narrow screen.
     const coarse = window.matchMedia("(pointer: coarse)");
     const narrow = window.matchMedia("(max-width: 640px)");
     const updateMobile = (): void =>
@@ -34,23 +34,37 @@ export function AmbientBackground() {
   }, []);
 
   if (isMobile) {
+    const drift = (
+      dx: number,
+      dy: number,
+      duration: number,
+    ): {
+      animate?: { x: number[]; y: number[] };
+      transition?: Transition;
+    } =>
+      reduced
+        ? {}
+        : {
+            animate: { x: [0, dx, 0], y: [0, dy, 0] },
+            transition: { repeat: Infinity, duration, ease: "easeInOut" },
+          };
     return (
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
       >
-        <div className="h-full w-full scale-[2] opacity-40 blur-[16px]">
-          <PrismaticBurst
-            colors={PALETTE}
-            intensity={20}
-            speed={0.03}
-            distort={0.4}
-            rayCount={3}
-            animationType="rotate3d"
-            lightMode={theme === "light"}
-            paused={reduced}
-          />
-        </div>
+        <motion.div
+          className="absolute -left-16 -top-16 h-64 w-64 rounded-full bg-sage/30 blur-3xl dark:bg-sage/15"
+          {...drift(28, 20, 14)}
+        />
+        <motion.div
+          className="absolute -bottom-10 -right-16 h-50 w-50 rounded-full bg-maroon/45 blur-3xl "
+          {...drift(-14, -18, 17)}
+        />
+        <motion.div
+          className="absolute -right-20 top-1/3 h-25 w-25 rounded-full bg-deep blur-3xl dark:bg-sage/40"
+          {...drift(-15, 12, 15)}
+        />
       </div>
     );
   }
