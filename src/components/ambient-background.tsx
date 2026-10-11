@@ -28,9 +28,9 @@ export function AmbientBackground() {
       <div className="h-full w-full scale-125 opacity-40  blur-[32px] saturate-[1.15] dark:opacity-40">
         <PrismaticBurst
           colors={PALETTE}
-          intensity={50}
-          speed={0.35}
-          distort={1.1}
+          intensity={30}
+          speed={0.1}
+          distort={1}
           rayCount={8}
           animationType="rotate3d"
           lightMode={theme === "light"}
