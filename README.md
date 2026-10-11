@@ -1,6 +1,8 @@
 # Event Manager
 
-Event Manager is a web application that allows Admin to create and manage events. Regular users can browse available events and register to attend them. Only admin can create events, regular users do not have permission to create them.
+Event Manager is a web application that allows Admin to create and manage events. Regular users can browse available events and register to attend them. Only Admin have permission to create events; regular users cannot create events.
+
+[🌐 Live Demo](https://event-manager-topaz-two.vercel.app/)
 ## Technologies used
 
 | Layer | Choice |
